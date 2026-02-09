@@ -1,213 +1,27 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>San Valentín 💖</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', sans-serif;
-}
+    <title>Para mi cielo 💜</title>
 
-/* FONDO */
-body {
-    height: 100vh;
-    background: radial-gradient(circle at top, #ff8fb1, #ff4e8a, #c9184a);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
+    <!-- Fuente graffiti -->
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Spray+Paint&display=swap" rel="stylesheet">
 
-/* LUCES */
-body::before,
-body::after {
-    content: "";
-    position: absolute;
-    width: 320px;
-    height: 320px;
-    background: rgba(255,255,255,0.25);
-    filter: blur(130px);
-    border-radius: 50%;
-    animation: lights 14s infinite alternate ease-in-out;
-}
-
-body::after {
-    top: 60%;
-    left: 60%;
-    animation-delay: 5s;
-}
-
-@keyframes lights {
-    from { transform: translate(0,0); }
-    to { transform: translate(-140px,-140px); }
-}
-
-/* TARJETA */
-.card {
-    width: 90%;
-    max-width: 360px;
-    padding: 28px 24px;
-    border-radius: 26px;
-    background: rgba(255,255,255,0.22);
-    backdrop-filter: blur(18px);
-    border: 1px solid rgba(255,255,255,0.35);
-    box-shadow: 0 25px 45px rgba(0,0,0,0.3);
-    text-align: center;
-    z-index: 2;
-}
-
-/* TEXTO */
-h1 {
-    color: white;
-    font-size: 1.55rem;
-    margin-bottom: 6px;
-}
-
-.name {
-    font-size: 2.15rem;
-    font-weight: 800;
-    margin-bottom: 22px;
-    background: linear-gradient(135deg, #fff, #ffd1e8, #fff);
-    background-size: 200% auto;
-    color: transparent;
-    -webkit-background-clip: text;
-    animation: shine 4s linear infinite, heartbeat 3s ease-in-out infinite;
-}
-    
-@keyframes shine {
-    to { background-position: -200% center; }
-}
-@keyframes heartbeat {
-    0%,100% { transform: scale(1); }
-    50% { transform: scale(1.06); }
-}
-
-/* ÁREA BOTONES */
-.button-area {
-    position: relative;
-    width: 100%;
-    height: 140px;
-    border-radius: 20px;
-    background: rgba(255,255,255,0.15);
-    border: 1px solid rgba(255,255,255,0.25);
-    overflow: hidden;
-}
-
-/* BOTONES */
-button {
-    padding: 14px 26px;
-    font-size: 1.05rem;
-    border: none;
-    border-radius: 30px;
-    position: absolute;
-    cursor: pointer;
-    transition: 0.25s ease;
-}
-
-#yes {
-    background: linear-gradient(135deg, #ff4e8a, #ff758c);
-    color: white;
-    left: 50%;
-    bottom: 12px;
-    transform: translateX(-50%);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.35);
-}
-
-#yes:active {
-    transform: translateX(-50%) scale(0.95);
-}
-
-#no {
-    background: rgba(255,255,255,0.85);
-    color: #ff4e8a;
-    top: 15px;
-    left: 15px;
-}
-
-/* RESULTADO */
-#result {
-    display: none;
-    margin-top: 22px;
-}
-
-#result p {
-    color: white;
-    font-size: 1.2rem;
-    margin-bottom: 18px;
-}
-
-/* CARRUSEL */
-.carousel {
-    width: 100%;
-    height: 220px;              /* altura cómoda para iPhone */
-    overflow: hidden;
-    border-radius: 18px;
-    background: rgba(0,0,0,0.15); /* relleno elegante */
-    display: flex;
-    align-items: center;
-}
-
-.track {
-    display: flex;
-    width: calc(100% * 6);
-    animation: slide 12s linear infinite;
-}
-
-.carousel img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;        /*  NO recorta */
-    object-position: center;    /* centrada */
-    border-radius: 18px;
-    margin-right: 10px;
-}
-
-@keyframes slide {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-300%); }
-}
-
-/* CORAZONES */
-.heart {
-    position: absolute;
-    bottom: -20px;
-    font-size: 18px;
-    animation: float 6s linear infinite;
-    pointer-events: none;
-}
-
-@keyframes float {
-    0% {
-        transform: translateY(0) scale(1);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-110vh) scale(1.7);
-        opacity: 0;
-    }
-}
-</style>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<div class="card">
-    <h1>¿Quieres ser mi San Valentín?</h1>
-    <div class="name">Allison 💖</div>
+<div class="hearts"></div>
 
-    <div class="button-area" id="area">
-        <button id="yes">Chí 💘</button>
-        <button id="no">No 😢</button>
-    </div>
+<!-- PAGE 1 -->
+<section class="page active" id="page1">
+    <div class="card">
 
-    <div id="result">
-        <p>Sabía que dirías que si MIAMORRRR 🥰</p>
+        <div class="name">Allison<3 </div>
 
+        <!-- Carrusel -->
         <div class="carousel">
             <div class="track">
                 <img src="foto1.jpeg">
@@ -218,48 +32,28 @@ button {
                 <img src="foto3.jpeg">
             </div>
         </div>
+
+        <p class="question">¿Quieres ser mi San Valentín?</p>
+
+        <div class="buttons">
+            <button id="yes">Chiii💗</button>
+            <button id="no">Nooo😔</button>
+        </div>
+
     </div>
-</div>
+</section>
 
-<script>
-const noBtn = document.getElementById("no");
-const area = document.getElementById("area");
-const yesBtn = document.getElementById("yes");
-const result = document.getElementById("result");
+<!-- PAGE 2 -->
+<section class="page" id="page2">
+    <video src="video.mp4" autoplay loop muted playsinline></video>
 
-/* NO ESCAPA */
-function moveNo() {
-    const maxX = area.clientWidth - noBtn.offsetWidth;
-    const maxY = area.clientHeight - noBtn.offsetHeight;
-    noBtn.style.left = Math.random() * maxX + "px";
-    noBtn.style.top = Math.random() * maxY + "px";
-}
+    <audio id="music" src="musica.mp3" loop></audio>
 
-noBtn.addEventListener("touchstart", moveNo);
-noBtn.addEventListener("mouseover", moveNo);
+    <div class="letter">
+        <div id="typing"></div>
+    </div>
+</section>
 
-/* SÍ */
-yesBtn.addEventListener("click", () => {
-    result.style.display = "block";
-});
-
-/* CORAZONES */
-function createHeart() {
-    const heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerHTML = "❤️";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = Math.random() * 18 + 14 + "px";
-    heart.style.animationDuration = Math.random() * 3 + 4 + "s";
-    document.body.appendChild(heart);
-
-    setTimeout(() => heart.remove(), 7000);
-}
-setInterval(createHeart, 350);
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
-
-
-
