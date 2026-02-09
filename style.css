@@ -87,10 +87,46 @@ body {
 
 /* TEXTO */
 .question {
+    position: relative;
+    display: inline-block;
+    padding: 16px 26px;
+    margin: 18px auto;
+
+    background: rgba(255,255,255,0.35);
+    backdrop-filter: blur(10px);
+
+    border-radius: 999px;
     font-size: 1.1rem;
-    margin: 15px 0;
+    font-weight: 500;
+    color: #fff;
+
+    box-shadow:
+        0 8px 18px rgba(0,0,0,0.25),
+        inset 0 0 12px rgba(255,255,255,0.5);
 }
 
+.question::before,
+.question::after {
+    content: "";
+    position: absolute;
+    background: rgba(255,255,255,0.35);
+    border-radius: 50%;
+    filter: blur(2px);
+}
+
+.question::before {
+    width: 34px;
+    height: 34px;
+    top: -12px;
+    left: 18px;
+}
+
+.question::after {
+    width: 26px;
+    height: 26px;
+    top: -6px;
+    right: 22px;
+}
 /* BOTONES */
 .buttons {
     display: flex;
