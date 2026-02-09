@@ -131,10 +131,12 @@ button {
 /* CARRUSEL */
 .carousel {
     width: 100%;
-    aspec-ratio: 4 / 5;
-    max-height: 200px;
+    height: 220px;              /* altura cómoda para iPhone */
     overflow: hidden;
     border-radius: 18px;
+    background: rgba(0,0,0,0.15); /* relleno elegante */
+    display: flex;
+    align-items: center;
 }
 
 .track {
@@ -145,8 +147,9 @@ button {
 
 .carousel img {
     width: 100%;
-    heigth:100%;
-    object-fit: cover;
+    height: 100%;
+    object-fit: contain;        /*  NO recorta */
+    object-position: center;    /* centrada */
     border-radius: 18px;
     margin-right: 10px;
 }
@@ -244,4 +247,5 @@ setInterval(createHeart, 350);
 
 </body>
 </html>
+
 
