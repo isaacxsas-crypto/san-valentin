@@ -25,45 +25,6 @@ body {
   padding: 20px;
 }
 
-/* TARJETA */
-.card {
-  background: rgba(255,255,255,0.25);
-  padding: 25px;
-  border-radius: 25px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-  animation: cardIn 1s ease forwards;
-}
-
-@keyframes cardIn {
-  from { opacity: 0; transform: translateY(30…
-[2:00 a.m., 9/2/2026] 1ZACK: <!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>San Valentín 💘</title>
-
-<style>
-body {
-  margin: 0;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #ff758c, #ff7eb3);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: Arial, sans-serif;
-  color: #fff;
-  text-align: center;
-  overflow: hidden;
-}
-
-.container {
-  width: 100%;
-  max-width: 380px;
-  padding: 20px;
-}
-
-/* TARJETA */
 .card {
   background: rgba(255,255,255,0.25);
   padding: 25px;
@@ -106,12 +67,10 @@ button {
   transform: translateX(-50%);
 }
 
-/* OCULTAR */
 .hidden {
   display: none;
 }
 
-/* TITULO */
 .hidden-title {
   opacity: 0;
   transform: scale(0.9);
@@ -125,28 +84,31 @@ button {
   to { opacity: 1; transform: scale(1); }
 }
 
-/* VIDEO */
 video {
   width: 100%;
   border-radius: 20px;
   margin-top: 15px;
 }
 
-/* CARRUSEL */
+/* ===== CARRUSEL ===== */
 .carousel {
-  display: flex;
+  width: 100%;
+  max-width: 280px;
   overflow: hidden;
-  gap: 10px;
-  margin-top: 20px;
+  margin: 20px auto 0;
 }
 
-.carousel img {
+.carousel-track {
+  display: flex;
+  gap: 10px;
+  will-change: transform;
+}
+
+.carousel-track img {
   width: 100%;
   max-width: 280px;
   border-radius: 20px;
-  object-fit: cover;
   flex-shrink: 0;
-  transition: transform 0.5s ease;
 }
 
 /* TEXTO */
@@ -154,7 +116,7 @@ video {
   margin-top: 20px;
   font-size: 15px;
   line-height: 1.6;
-  min-height: 90px;
+  min-height: 100px;
 }
 
 /* CORAZONES */
@@ -191,20 +153,20 @@ video {
   <div id="yesScreen" class="hidden">
     <h1 id="titleYes" class="hidden-title">Perfecta mujer, esto es pa’ ti 🥰</h1>
 
-    <!-- VIDEO -->
     <video controls>
       <source src="video.mp4" type="video/mp4">
       Tu navegador no soporta video
     </video>
 
     <!-- CARRUSEL -->
-    <div class="carousel" id="carousel">
-      <img src="foto1.jpeg" alt="">
-      <img src="foto2.jpeg" alt="">
-      <img src="foto3.jpeg" alt="">
+    <div class="carousel">
+      <div class="carousel-track" id="carousel">
+        <img src="foto1.jpeg">
+        <img src="foto2.jpeg">
+        <img src="foto3.jpeg">
+      </div>
     </div>
 
-    <!-- MENSAJE -->
     <div class="message" id="message"></div>
   </div>
 
@@ -213,46 +175,49 @@ video {
 <script>
 const noBtn = document.getElementById("noBtn");
 const yesBtn = document.getElementById("yesBtn");
+const message = document.getElementById("message");
 
-// Botón NO
+// BOTÓN NO
 noBtn.addEventListener("mouseover", moveNo);
-noBtn.addEventListener("touchstart", () => { navigator.vibrate?.(50); moveNo(); });
+noBtn.addEventListener("touchstart", moveNo);
 
 function moveNo() {
   const area = document.getElementById("buttonsArea");
-  const maxX = area.clientWidth - noBtn.offsetWidth;
-  const maxY = area.clientHeight - noBtn.offsetHeight;
-  const x = Math.random() * maxX;
-  const y = Math.random() * maxY;
+  const x = Math.random() * (area.clientWidth - noBtn.offsetWidth);
+  const y = Math.random() * (area.clientHeight - noBtn.offsetHeight);
   noBtn.style.left = x + "px";
   noBtn.style.top = y + "px";
 }
 
-// Al presionar Sí
+// BOTÓN SÍ
 yesBtn.addEventListener("click", () => {
   document.getElementById("mainScreen").classList.add("hidden");
   document.getElementById("yesScreen").classList.remove("hidden");
 
-  setTimeout(() => { document.getElementById("titleYes").classList.add("show-title"); }, 300);
+  setTimeout(() => {
+    document.getElementById("titleYes").classList.add("show-title");
+  }, 300);
 
+  i = 0;
+  message.innerHTML = "";
   typeText();
   createHearts();
   startCarousel();
 });
 
-// TEXTO TIPO CARTA
-const text = "Eres mi amor, mi changuita guapa, mi pedacito de cielo, mi vida, mi cielo, mi eterno amor, mi chuchurrumin, mi nena de ojitos lindos, mi chiki beibi, mi morenita, mi chiquita, mi prioridad, mi minioncita, mi esposita bonita, mi todotodotodotodotodotodotodotodotodo. Mi vida entera, eres todo lo hermoso que existe en este mundo. Gracias por dejarme amarte. MI AMOOOOOOOOOR 💖";
-
+// TEXTO
+const text = "Eres mi amor, mi changuita guapa, mi pedacito de cielo, mi vida, mi cielo, mi eterno amor, mi chuchurrumin, mi nena de ojitos lindos, mi chiki beibi, mi morenita, mi chiquita, mi prioridad, mi minioncita, mi esposita bonita, mi todotodo. Gracias por dejarme amarte. MI AMOOOOOOOOOR 💖";
 let i = 0;
+
 function typeText() {
   if (i < text.length) {
-    document.getElementById("message").innerHTML += text.charAt(i);
+    message.innerHTML += text.charAt(i);
     i++;
     setTimeout(typeText, 25);
   }
 }
 
-// CORAZONES FLOTANDO
+// CORAZONES
 function createHearts() {
   setInterval(() => {
     const heart = document.createElement("div");
@@ -261,26 +226,33 @@ function createHearts() {
     heart.style.left = Math.random() * 100 + "vw";
     heart.style.fontSize = (Math.random() * 12 + 12) + "px";
     document.body.appendChild(heart);
-    setTimeout(() => { heart.remove(); }, 6000);
+    setTimeout(() => heart.remove(), 6000);
   }, 700);
 }
 
-// CARRUSEL AUTOMÁTICO
+// CARRUSEL INFINITO
 function startCarousel() {
-  const carousel = document.getElementById("carousel");
-  const images = carousel.querySelectorAll("img");
-  let index = 0;
+  const track = document.getElementById("carousel");
+  const imgs = Array.from(track.children);
 
-  setInterval(() => {
-    index++;
-    if(index >= images.length) index = 0;
-    const offset = -index * (images[0].clientWidth + 10); // 10px gap
-    carousel.style.transform = translateX(${offset}px);
-    carousel.style.transition = "transform 0.5s ease";
-  }, 2000);
+  imgs.forEach(img => {
+    track.appendChild(img.cloneNode(true));
+  });
+
+  let position = 0;
+  const imgWidth = imgs[0].offsetWidth + 10;
+  const totalWidth = imgWidth * imgs.length;
+
+  function animate() {
+    position -= 0.4; // velocidad
+    if (Math.abs(position) >= totalWidth) position = 0;
+    track.style.transform = translateX(${position}px);
+    requestAnimationFrame(animate);
+  }
+
+  animate();
 }
 </script>
 
 </body>
 </html>
-
