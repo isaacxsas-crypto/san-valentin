@@ -237,3 +237,21 @@ button {
     0%,50%,100% { opacity: 1; }
     25%,75% { opacity: 0; }
 }
+.cloud-heart {
+    position: absolute;
+    font-size: 12px;
+    pointer-events: none;
+    animation: cloudFloat 3s ease-out forwards;
+    opacity: 0.9;
+}
+
+@keyframes cloudFloat {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-40px) scale(1.4);
+        opacity: 0;
+    }
+}
