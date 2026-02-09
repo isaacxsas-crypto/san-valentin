@@ -53,3 +53,22 @@ setInterval(() => {
 
     setTimeout(() => heart.remove(), 6000);
 }, 400);
+const cloud = document.querySelector(".question");
+
+setInterval(() => {
+    if (!cloud) return;
+
+    const heart = document.createElement("span");
+    heart.classList.add("cloud-heart");
+    heart.innerText = "💗";
+
+    const rect = cloud.getBoundingClientRect();
+    heart.style.left = rect.width / 2 + (Math.random() * 30 - 15) + "px";
+    heart.style.top = rect.height / 2 + "px";
+
+    cloud.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 3000);
+}, 900);
