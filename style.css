@@ -87,19 +87,20 @@ body {
 
 /* TEXTO */
 .question {
-    font-size: 20px;
-    font-weight: 700;
-    color: #ff2d55;
+    font-family: 'Pacifico', cursive;
+    font-size: 22px;
     text-align: center;
-    animation: heartbeat 1.6s infinite;
+    background: linear-gradient(90deg, #6a11cb, #ff4d6d);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 1px;
+    animation: floatText 3s ease-in-out infinite;
 }
 
-@keyframes heartbeat {
-    0% { transform: scale(1); }
-    25% { transform: scale(1.08); }
-    40% { transform: scale(1); }
-    60% { transform: scale(1.1); }
-    100% { transform: scale(1); }
+@keyframes floatText {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+    100% { transform: translateY(0); }
 }
 
 /* BOTONES */
