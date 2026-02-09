@@ -1,8 +1,5 @@
 // TEXTO CARTA
-const text = `Eres mi amor, mi changuita guapa, mi pedacito de cielo, mi vida, mi cielo, mi eterno amor, mi chuchurrumin, mi nena de ojitos lindos, mi chiki beibi, mi morenita, mi chiquita, mi prioridad, mi minioncita, mi esposita bonita, mi todotodotodotodotodotodotodotodotodo. 
-
-Mi vida entera, eres todo lo hermoso que existe en este mundo. 
-Gracias por dejarme amarte. 
+const text = `Holaaaaa mi changuita linda, se que estamos lejos pero eso no me va a impedir darte algo, Te amo miamor y cuando digo que yo te amo más, no me refiero a que te amo más de lo que tu me amas , me refiero a que te amo más que a los dias malos que pasamos juntos, más que a cualquier pelea absurda o malentendido, te amo más que a la distancia que nos pueda separar, te amo más que a mis propias dudas más que a mis miedos , más que a todo lo que algunas vez intento frenarme , Te amo más de lo que piensas , más de lo que digo ,y sobre todo más de lo que te demuestro, me tienes amando cada pedacito de ti. CASEMONOS 💗
 
 MI AMOOOOOOOOOR 💗`;
 
