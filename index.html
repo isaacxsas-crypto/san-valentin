@@ -1,217 +1,236 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>San Valentín 💘</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>San Valentín 💘</title>
 
-  <style>
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background: linear-gradient(135deg, #ff758c, #ff7eb3);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-family: Arial, sans-serif;
-      color: #fff;
-      text-align: center;
-      overflow: hidden;
-    }
+<style>
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  color: #fff;
+  text-align: center;
+  overflow: hidden;
+}
 
-    .container {
-      width: 100%;
-      max-width: 380px;
-      padding: 20px;
-    }
+.container {
+  width: 100%;
+  max-width: 380px;
+  padding: 20px;
+}
 
-    /* TARJETA */
-    .card {
-      background: rgba(255,255,255,0.25);
-      padding: 25px;
-      border-radius: 25px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-      animation: cardIn 1s ease forwards;
-    }
+/* TARJETA */
+.card {
+  background: rgba(255,255,255,0.25);
+  padding: 25px;
+  border-radius: 25px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  animation: cardIn 1s ease forwards;
+}
 
-    @keyframes cardIn {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-    .buttons-area {
-      position: relative;
-      width: 100%;
-      height: 140px;
-      margin-top: 20px;
-    }
+.buttons-area {
+  position: relative;
+  width: 100%;
+  height: 140px;
+  margin-top: 20px;
+}
 
-    button {
-      padding: 12px 22px;
-      border: none;
-      border-radius: 20px;
-      font-size: 16px;
-      cursor: pointer;
-    }
+button {
+  padding: 12px 22px;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
 
-    #yesBtn {
-      background: #ff4d6d;
-      color: white;
-    }
+#yesBtn {
+  background: #ff4d6d;
+  color: white;
+}
 
-    #noBtn {
-      background: #fff;
-      color: #ff4d6d;
-      position: absolute;
-      top: 70px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
+#noBtn {
+  background: #fff;
+  color: #ff4d6d;
+  position: absolute;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+}
 
-    /* OCULTAR */
-    .hidden {
-      display: none;
-    }
+/* OCULTAR */
+.hidden {
+  display: none;
+}
 
-    /* TITULO */
-    .hidden-title {
-      opacity: 0;
-      transform: scale(0.9);
-    }
+/* TITULO */
+.hidden-title {
+  opacity: 0;
+  transform: scale(0.9);
+}
 
-    .show-title {
-      animation: appear 1.2s ease forwards;
-    }
+.show-title {
+  animation: appear 1.2s ease forwards;
+}
 
-    @keyframes appear {
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
+@keyframes appear {
+  to { opacity: 1; transform: scale(1); }
+}
 
-    /* VIDEO */
-    video {
-      width: 100%;
-      border-radius: 20px;
-      margin-top: 15px;
-    }
+/* VIDEO */
+video {
+  width: 100%;
+  border-radius: 20px;
+  margin-top: 15px;
+}
 
-    /* CARRUSEL */
-    .carousel {
-      display: flex;
-      overflow-x: auto;
-      gap: 10px;
-      margin-top: 20px;
-      scroll-snap-type: x mandatory;
-    }
+/* CARRUSEL */
+.carousel {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  margin-top: 20px;
+  scroll-snap-type: x mandatory;
+}
 
-    .carousel img {
-      width: 100%;
-      max-width: 280px;
-      border-radius: 20px;
-      scroll-snap-align: center;
-      object-fit: cover;
-      flex-shrink: 0;
-    }
+.carousel img {
+  width: 100%;
+  max-width: 280px;
+  border-radius: 20px;
+  scroll-snap-align: center;
+  object-fit: cover;
+  flex-shrink: 0;
+}
 
-    /* TEXTO */
-    .message {
-      margin-top: 20px;
-      font-size: 15px;
-      line-height: 1.6;
-      min-height: 90px;
-    }
-  </style>
+/* TEXTO */
+.message {
+  margin-top: 20px;
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 90px;
+}
+
+/* CORAZONES */
+.heart {
+  position: fixed;
+  bottom: -10px;
+  color: rgba(255,255,255,0.6);
+  font-size: 18px;
+  animation: floatUp 6s linear forwards;
+  pointer-events: none;
+}
+
+@keyframes floatUp {
+  from { transform: translateY(0); opacity: 0; }
+  to { transform: translateY(-110vh); opacity: 1; }
+}
+</style>
 </head>
 
 <body>
-  <div class="container">
+<div class="container">
 
-    <!-- PANTALLA INICIAL -->
-    <div id="mainScreen" class="card">
-      <h2>¿Quieres ser mi San Valentín? 💌</h2>
+  <!-- PANTALLA INICIAL -->
+  <div id="mainScreen" class="card">
+    <h2>¿Quieres ser mi San Valentín? 💌</h2>
 
-      <div class="buttons-area" id="buttonsArea">
-        <button id="yesBtn">Sí 💘</button>
-        <button id="noBtn">No 😢</button>
-      </div>
+    <div class="buttons-area" id="buttonsArea">
+      <button id="yesBtn">Sí 💘</button>
+      <button id="noBtn">No 😢</button>
     </div>
-
-    <!-- PANTALLA SÍ -->
-    <div id="yesScreen" class="hidden">
-      <h1 id="titleYes" class="hidden-title">
-        Perfecta mujer, esto es pa’ ti 🥰
-      </h1>
-
-      <!-- VIDEO -->
-      <video controls>
-        <source src="video.mp4" type="video/mp4">
-        Tu navegador no soporta video
-      </video>
-
-      <!-- CARRUSEL -->
-      <div class="carousel">
-        <img src="foto1.jpeg">
-        <img src="foto2.jpeg">
-        <img src="foto3.jpeg">
-      </div>
-
-      <!-- MENSAJE -->
-      <div class="message" id="message"></div>
-    </div>
-
   </div>
 
-  <script>
-    const noBtn = document.getElementById("noBtn");
-    const yesBtn = document.getElementById("yesBtn");
+  <!-- PANTALLA SÍ -->
+  <div id="yesScreen" class="hidden">
+    <h1 id="titleYes" class="hidden-title">Perfecta mujer, esto es pa’ ti 🥰</h1>
 
-    noBtn.addEventListener("mouseover", moveNo);
-    noBtn.addEventListener("touchstart", moveNo);
+    <!-- VIDEO -->
+    <video controls>
+      <source src="video.mp4" type="video/mp4">
+      Tu navegador no soporta video
+    </video>
 
-    function moveNo() {
-      const area = document.getElementById("buttonsArea");
-      const maxX = area.clientWidth - noBtn.offsetWidth;
-      const maxY = area.clientHeight - noBtn.offsetHeight;
+    <!-- CARRUSEL -->
+    <div class="carousel">
+      <img src="./foto1.jpeg" alt="">
+      <img src="./foto2.jpeg" alt="">
+      <img src="./foto3.jpeg" alt="">
+    </div>
 
-      const x = Math.random() * maxX;
-      const y = Math.random() * maxY;
+    <!-- MENSAJE -->
+    <div class="message" id="message"></div>
+  </div>
 
-      noBtn.style.left = x + "px";
-      noBtn.style.top = y + "px";
-    }
+</div>
 
-    yesBtn.addEventListener("click", () => {
-      document.getElementById("mainScreen").classList.add("hidden");
-      document.getElementById("yesScreen").classList.remove("hidden");
+<script>
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
 
-      setTimeout(() => {
-        document.getElementById("titleYes").classList.add("show-title");
-      }, 300);
+// Botón NO limitado a la tarjeta
+noBtn.addEventListener("mouseover", moveNo);
+noBtn.addEventListener("touchstart", () => { navigator.vibrate?.(50); moveNo(); });
 
-      typeText();
-    });
+function moveNo() {
+  const area = document.getElementById("buttonsArea");
+  const maxX = area.clientWidth - noBtn.offsetWidth;
+  const maxY = area.clientHeight - noBtn.offsetHeight;
 
-    /* TEXTO TIPO CARTA */
-    const text = "Eres mi amor, mi changuita guapa, mi pedacito de cielo, mi vida, mi cielo, mi eterno amor, mi chuchurrumin, mi nena de ojitos lindos, mi chiki beibi, mi morenita, mi chiquita, mi prioridad, mi minioncita, mi esposita bonita, mi todotodotodotodotodotodotodotodotodo. Mi vida entera, eres todo lo hermoso que existe en este mundo. Gracias por dejarme amarte. MI AMOOOOOOOOOR 💖";
+  const x = Math.random() * maxX;
+  const y = Math.random() * maxY;
 
-    let i = 0;
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
+}
 
-    function typeText() {
-      if (i < text.length) {
-        document.getElementById("message").innerHTML += text.charAt(i);
-        i++;
-        setTimeout(typeText, 40);
-      }
-    }
-  </script>
+// Al presionar Sí
+yesBtn.addEventListener("click", () => {
+  document.getElementById("mainScreen").classList.add("hidden");
+  document.getElementById("yesScreen").classList.remove("hidden");
+
+  setTimeout(() => { document.getElementById("titleYes").classList.add("show-title"); }, 300);
+
+  typeText();
+  createHearts();
+});
+
+// TEXTO TIPO CARTA
+const text = "Eres mi amor, mi changuita guapa, mi pedacito de cielo, mi vida, mi cielo, mi eterno amor, mi chuchurrumin, mi nena de ojitos lindos, mi chiki beibi, mi morenita, mi chiquita, mi prioridad, mi minioncita, mi esposita bonita, mi todotodotodotodotodotodotodotodotodo. Mi vida entera, eres todo lo hermoso que existe en este mundo. Gracias por dejarme amarte. MI AMOOOOOOOOOR 💖";
+
+let i = 0;
+function typeText() {
+  if (i < text.length) {
+    document.getElementById("message").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeText, 25);
+  }
+}
+
+// CORAZONES FLOTANDO
+function createHearts() {
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 12 + 12) + "px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => { heart.remove(); }, 6000);
+  }, 700);
+}
+</script>
+
 </body>
 </html>
-
