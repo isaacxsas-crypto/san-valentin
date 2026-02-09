@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>San Valentín 💘</title>
 
   <style>
@@ -16,6 +16,7 @@
       font-family: Arial, sans-serif;
       color: #fff;
       text-align: center;
+      overflow: hidden;
     }
 
     .container {
@@ -30,6 +31,18 @@
       padding: 25px;
       border-radius: 25px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      animation: cardIn 1s ease forwards;
+    }
+
+    @keyframes cardIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .buttons-area {
@@ -61,11 +74,12 @@
       transform: translateX(-50%);
     }
 
-    /* SECCIÓN SÍ */
+    /* OCULTAR */
     .hidden {
       display: none;
     }
 
+    /* TITULO */
     .hidden-title {
       opacity: 0;
       transform: scale(0.9);
@@ -82,6 +96,7 @@
       }
     }
 
+    /* VIDEO */
     video {
       width: 100%;
       border-radius: 20px;
@@ -106,10 +121,12 @@
       flex-shrink: 0;
     }
 
+    /* TEXTO */
     .message {
       margin-top: 20px;
       font-size: 15px;
-      line-height: 1.5;
+      line-height: 1.6;
+      min-height: 90px;
     }
   </style>
 </head>
@@ -129,7 +146,9 @@
 
     <!-- PANTALLA SÍ -->
     <div id="yesScreen" class="hidden">
-      <h1 id="titleYes" class="hidden-title">Pefecta Mujer Esto es PA TI 🥰</h1>
+      <h1 id="titleYes" class="hidden-title">
+        Perfecta mujer, esto es pa’ ti 🥰
+      </h1>
 
       <!-- VIDEO -->
       <video controls>
@@ -145,19 +164,8 @@
       </div>
 
       <!-- MENSAJE -->
-      <div class="message">
-        Eres mi amor, mi changuita guapa,
-        mi pedacito de cielo, mi vida, mi cielo,
-        mi eterno amor, mi chuchurrumin,
-        mi nena de ojitos lindos, mi chiki beibi,
-        mi morenita, mi chiquita, mi prioridad,
-        mi minioncita, mi esposita bonita,
-        mi todotodotodotodotodotodotodotodotodo,
-        mi vida entera, eres todo lo hermoso que
-        existe eneste mundo, gracias por dejarme amarte
-        MIAMOOOOOOOOOOOOOOOOR. 💖
-      </div>
-    </div> 
+      <div class="message" id="message"></div>
+    </div>
 
   </div>
 
@@ -187,8 +195,23 @@
       setTimeout(() => {
         document.getElementById("titleYes").classList.add("show-title");
       }, 300);
+
+      typeText();
     });
+
+    /* TEXTO TIPO CARTA */
+    const text = "Eres mi amor, mi changuita guapa, mi pedacito de cielo, mi vida, mi cielo, mi eterno amor, mi chuchurrumin, mi nena de ojitos lindos, mi chiki beibi, mi morenita, mi chiquita, mi prioridad, mi minioncita, mi esposita bonita, mi todotodotodotodotodotodotodotodotodo. Mi vida entera, eres todo lo hermoso que existe en este mundo. Gracias por dejarme amarte. MI AMOOOOOOOOOR 💖";
+
+    let i = 0;
+
+    function typeText() {
+      if (i < text.length) {
+        document.getElementById("message").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeText, 40);
+      }
+    }
   </script>
 </body>
-</html
+</html>
 
