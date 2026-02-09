@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>San Valentín 💖</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ff5f8f, #ff8fab);
+    color: white;
+    overflow-x: hidden;
+}
+
+.container {
+    min-height: 100vh;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.2em;
+}
+
+.buttons {
+    position: relative;
+    width: 100%;
+    max-width: 300px;
+    height: 160px;
+    margin-top: 20px;
+}
+
+button {
+    padding: 15px 25px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 30px;
+}
+
+#yesBtn {
+    background: #ff2f68;
+    color: white;
+}
+
+#noBtn {
+    background: #444;
+    color: white;
+    position: absolute;
+    top: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.hidden { display: none; }
+
+/* VIDEO */
+video {
+    width: 100%;
+    max-width: 350px;
+    border-radius: 20px;
+    margin: 20px 0;
+}
+
+/* CARRUSEL */
+.carousel {
+    width: 100%;
+    max-width: 350px;
+    overflow-x: auto;
+    display: flex;
+    gap: 15px;
+    scroll-snap-type: x mandatory;
+    margin: 20px 0;
+}
+
+.carousel img {
+    width: 100%;
+    flex-shrink: 0;
+    scroll-snap-align: center;
+    border-radius: 20px;
+}
+
+/* TEXTO */
+.message {
+    background: rgba(255,255,255,0.2);
+    padding: 20px;
+    border-radius: 20px;
+    max-width: 350px;
+    font-size: 1em;
+}
+
+/* CORAZONES */
+.heart {
+    position: fixed;
+    bottom: -20px;
+    color: rgba(255,255,255,0.6);
+    animation: float 6s linear infinite;
+    font-size: 20px;
+}
+
+@keyframes float {
+    from { transform: translateY(0); }
+    to { transform: translateY(-110vh); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- PANTALLA INICIAL -->
+<div class="container" id="question">
+    <h1>¿Quieres ser mi San Valentín? 💖</h1>
+    <div class="buttons">
+        <button id="yesBtn">Sí 💘</button>
+        <button id="noBtn">No 😢</button>
+    </div>
+</div>
+
+<!-- CONTENIDO -->
+<div class="container hidden" id="content">
+    <h1>Sabía que dirías que sí 🥰</h1>
+
+    <video controls autoplay>
+        <source src="video.mp4" type="video/mp4">
+    </video>
+
+    <!-- CARRUSEL -->
+    <div class="carousel">
+        <img src="foto1.jpeg">
+        <img src="foto2.jpeg">
+        <img src="foto3.jpeg">
+        <img src="foto4.jpeg">
+    </div>
+
+    <!-- TEXTO -->
+    <div class="message" id="typing"></div>
+</div>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const question = document.getElementById("question");
+const content = document.getElementById("content");
+
+function moveNo() {
+    const x = Math.random() * (window.innerWidth - 120);
+    const y = Math.random() * (window.innerHeight - 60);
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+}
+
+noBtn.addEventListener("touchstart", moveNo);
+noBtn.addEventListener("click", moveNo);
+
+yesBtn.addEventListener("click", () => {
+    question.classList.add("hidden");
+    content.classList.remove("hidden");
+    startTyping();
+});
+
+/* TEXTO ESCRIBIÉNDOSE */
+const text = `Desde que llegaste a mi vida, todo cambió.
+Me enseñaste que amar no es tener miedo,
+sino tener ganas de quedarme, de cuidarte
+y de elegirte cada día.
+
+No prometo ser perfecto,
+pero sí ser sincero,
+leal y estar para ti
+en los días buenos y en los difíciles.
+
+Gracias por existir.
+Gracias por ser tú.
+Te amo 💖`;
+
+let i = 0;
+function startTyping() {
+    if (i < text.length) {
+        document.getElementById("typing").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(startTyping, 40);
+    }
+}
+
+/* CORAZONES */
+setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+}, 400);
+</script>
+
+</body>
+</html>
