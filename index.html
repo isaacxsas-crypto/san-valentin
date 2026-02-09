@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>San Valentín 💘</title>
 
 <style>
@@ -30,12 +30,6 @@ body {
   padding: 25px;
   border-radius: 25px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-  animation: cardIn 1s ease forwards;
-}
-
-@keyframes cardIn {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
 }
 
 .buttons-area {
@@ -71,37 +65,23 @@ button {
   display: none;
 }
 
-.hidden-title {
-  opacity: 0;
-  transform: scale(0.9);
-}
-
-.show-title {
-  animation: appear 1.2s ease forwards;
-}
-
-@keyframes appear {
-  to { opacity: 1; transform: scale(1); }
-}
-
 video {
   width: 100%;
   border-radius: 20px;
   margin-top: 15px;
 }
 
-/* ===== CARRUSEL ===== */
+/* CARRUSEL */
 .carousel {
   width: 100%;
   max-width: 280px;
   overflow: hidden;
-  margin: 20px auto 0;
+  margin: 20px auto;
 }
 
 .carousel-track {
   display: flex;
   gap: 10px;
-  will-change: transform;
 }
 
 .carousel-track img {
@@ -111,11 +91,9 @@ video {
   flex-shrink: 0;
 }
 
-/* TEXTO */
 .message {
   margin-top: 20px;
   font-size: 15px;
-  line-height: 1.6;
   min-height: 100px;
 }
 
@@ -124,41 +102,34 @@ video {
   position: fixed;
   bottom: -10px;
   color: rgba(255,255,255,0.6);
-  font-size: 18px;
   animation: floatUp 6s linear forwards;
-  pointer-events: none;
 }
 
 @keyframes floatUp {
-  from { transform: translateY(0); opacity: 0; }
-  to { transform: translateY(-110vh); opacity: 1; }
+  to { transform: translateY(-110vh); opacity: 0; }
 }
 </style>
 </head>
 
 <body>
+
 <div class="container">
 
-  <!-- PANTALLA INICIAL -->
   <div id="mainScreen" class="card">
     <h2>¿Quieres ser mi San Valentín? 💌</h2>
-
     <div class="buttons-area" id="buttonsArea">
       <button id="yesBtn">Sí 💘</button>
       <button id="noBtn">No 😢</button>
     </div>
   </div>
 
-  <!-- PANTALLA SÍ -->
   <div id="yesScreen" class="hidden">
-    <h1 id="titleYes" class="hidden-title">Perfecta mujer, esto es pa’ ti 🥰</h1>
+    <h1>Perfecta mujer, esto es pa’ ti 🥰</h1>
 
     <video controls>
       <source src="video.mp4" type="video/mp4">
-      Tu navegador no soporta video
     </video>
 
-    <!-- CARRUSEL -->
     <div class="carousel">
       <div class="carousel-track" id="carousel">
         <img src="foto1.jpeg">
@@ -173,85 +144,71 @@ video {
 </div>
 
 <script>
-const noBtn = document.getElementById("noBtn");
-const yesBtn = document.getElementById("yesBtn");
-const message = document.getElementById("message");
+document.addEventListener("DOMContentLoaded", () => {
 
-// BOTÓN NO
-noBtn.addEventListener("mouseover", moveNo);
-noBtn.addEventListener("touchstart", moveNo);
+  const noBtn = document.getElementById("noBtn");
+  const yesBtn = document.getElementById("yesBtn");
+  const message = document.getElementById("message");
 
-function moveNo() {
-  const area = document.getElementById("buttonsArea");
-  const x = Math.random() * (area.clientWidth - noBtn.offsetWidth);
-  const y = Math.random() * (area.clientHeight - noBtn.offsetHeight);
-  noBtn.style.left = x + "px";
-  noBtn.style.top = y + "px";
-}
-
-// BOTÓN SÍ
-yesBtn.addEventListener("click", () => {
-  document.getElementById("mainScreen").classList.add("hidden");
-  document.getElementById("yesScreen").classList.remove("hidden");
-
-  setTimeout(() => {
-    document.getElementById("titleYes").classList.add("show-title");
-  }, 300);
-
-  i = 0;
-  message.innerHTML = "";
-  typeText();
-  createHearts();
-  startCarousel();
-});
-
-// TEXTO
-const text = "Eres mi amor, mi changuita guapa, mi pedacito de cielo, mi vida, mi cielo, mi eterno amor, mi chuchurrumin, mi nena de ojitos lindos, mi chiki beibi, mi morenita, mi chiquita, mi prioridad, mi minioncita, mi esposita bonita, mi todotodo. Gracias por dejarme amarte. MI AMOOOOOOOOOR 💖";
-let i = 0;
-
-function typeText() {
-  if (i < text.length) {
-    message.innerHTML += text.charAt(i);
-    i++;
-    setTimeout(typeText, 25);
-  }
-}
-
-// CORAZONES
-function createHearts() {
-  setInterval(() => {
-    const heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerHTML = "❤";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.fontSize = (Math.random() * 12 + 12) + "px";
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 6000);
-  }, 700);
-}
-
-// CARRUSEL INFINITO
-function startCarousel() {
-  const track = document.getElementById("carousel");
-  const imgs = Array.from(track.children);
-
-  imgs.forEach(img => {
-    track.appendChild(img.cloneNode(true));
+  noBtn.addEventListener("click", () => {
+    const area = document.getElementById("buttonsArea");
+    const x = Math.random() * (area.clientWidth - noBtn.offsetWidth);
+    const y = Math.random() * (area.clientHeight - noBtn.offsetHeight);
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
   });
 
-  let position = 0;
-  const imgWidth = imgs[0].offsetWidth + 10;
-  const totalWidth = imgWidth * imgs.length;
+  yesBtn.addEventListener("click", () => {
+    document.getElementById("mainScreen").classList.add("hidden");
+    document.getElementById("yesScreen").classList.remove("hidden");
 
-  function animate() {
-    position -= 0.4; // velocidad
-    if (Math.abs(position) >= totalWidth) position = 0;
-    track.style.transform = translateX(${position}px);
-    requestAnimationFrame(animate);
+    typeText();
+    createHearts();
+    startCarousel();
+  });
+
+  const text = "Eres mi amor, mi vida, mi todo. Gracias por existir. Te amo 💖";
+  let i = 0;
+
+  function typeText() {
+    if (i < text.length) {
+      message.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typeText, 25);
+    }
   }
 
-  animate();
-}
+  function createHearts() {
+    setInterval(() => {
+      const h = document.createElement("div");
+      h.className = "heart";
+      h.innerHTML = "❤";
+      h.style.left = Math.random() * 100 + "vw";
+      document.body.appendChild(h);
+      setTimeout(() => h.remove(), 6000);
+    }, 700);
+  }
+
+  function startCarousel() {
+    const track = document.getElementById("carousel");
+    const imgs = Array.from(track.children);
+
+    imgs.forEach(img => track.appendChild(img.cloneNode(true)));
+
+    let pos = 0;
+    const w = imgs[0].offsetWidth + 10;
+    const total = w * imgs.length;
+
+    function move() {
+      pos -= 0.4;
+      if (Math.abs(pos) >= total) pos = 0;
+      track.style.transform = translateX(${pos}px);
+      requestAnimationFrame(move);
+    }
+    move();
+  }
+
+});
 </script>
 
 </body>
