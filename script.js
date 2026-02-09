@@ -24,9 +24,19 @@ document.getElementById("yes").onclick = () => {
     document.getElementById("page2").classList.add("active");
 
     const music = document.getElementById("music");
-    music.volume = 0.6;
-    music.play();
+music.volume = 0;
+music.play();
 
+let vol = 0;
+const fade = setInterval(() => {
+    if (vol < 0.6) {
+        vol += 0.02;
+        music.volume = vol;
+    } else {
+        clearInterval(fade);
+    }
+}, 200);
+    
     typeText();
 };
 
