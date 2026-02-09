@@ -1,4 +1,42 @@
-<!DOCTYPE html>
+[1:42 a.m., 9/2/2026] 1ZACK: <!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>San Valentín 💘</title>
+
+<style>
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  color: #fff;
+  text-align: center;
+  overflow: hidden;
+}
+
+.container {
+  width: 100%;
+  max-width: 380px;
+  padding: 20px;
+}
+
+/* TARJETA */
+.card {
+  background: rgba(255,255,255,0.25);
+  padding: 25px;
+  border-radius: 25px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  animation: cardIn 1s ease forwards;
+}
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(30…
+[2:00 a.m., 9/2/2026] 1ZACK: <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -97,19 +135,18 @@ video {
 /* CARRUSEL */
 .carousel {
   display: flex;
-  overflow-x: auto;
+  overflow: hidden;
   gap: 10px;
   margin-top: 20px;
-  scroll-snap-type: x mandatory;
 }
 
 .carousel img {
   width: 100%;
   max-width: 280px;
   border-radius: 20px;
-  scroll-snap-align: center;
   object-fit: cover;
   flex-shrink: 0;
+  transition: transform 0.5s ease;
 }
 
 /* TEXTO */
@@ -161,7 +198,7 @@ video {
     </video>
 
     <!-- CARRUSEL -->
-    <div class="carousel">
+    <div class="carousel" id="carousel">
       <img src="foto1.jpeg" alt="">
       <img src="foto2.jpeg" alt="">
       <img src="foto3.jpeg" alt="">
@@ -185,10 +222,8 @@ function moveNo() {
   const area = document.getElementById("buttonsArea");
   const maxX = area.clientWidth - noBtn.offsetWidth;
   const maxY = area.clientHeight - noBtn.offsetHeight;
-
   const x = Math.random() * maxX;
   const y = Math.random() * maxY;
-
   noBtn.style.left = x + "px";
   noBtn.style.top = y + "px";
 }
@@ -202,6 +237,7 @@ yesBtn.addEventListener("click", () => {
 
   typeText();
   createHearts();
+  startCarousel();
 });
 
 // TEXTO TIPO CARTA
@@ -224,11 +260,24 @@ function createHearts() {
     heart.innerHTML = "❤";
     heart.style.left = Math.random() * 100 + "vw";
     heart.style.fontSize = (Math.random() * 12 + 12) + "px";
-
     document.body.appendChild(heart);
-
     setTimeout(() => { heart.remove(); }, 6000);
   }, 700);
+}
+
+// CARRUSEL AUTOMÁTICO
+function startCarousel() {
+  const carousel = document.getElementById("carousel");
+  const images = carousel.querySelectorAll("img");
+  let index = 0;
+
+  setInterval(() => {
+    index++;
+    if(index >= images.length) index = 0;
+    const offset = -index * (images[0].clientWidth + 10); // 10px gap
+    carousel.style.transform = translateX(${offset}px);
+    carousel.style.transition = "transform 0.5s ease";
+  }, 2000);
 }
 </script>
 
